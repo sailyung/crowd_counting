@@ -1,16 +1,8 @@
-# NWPU-Crowd Sample Code
+# LCN (Lightweight Crowd-corunting Net) by using NWPU-Crowd dataset 
 
 ---
 
-This repo is the official implementation of [paper](https://arxiv.org/abs/2001.03360): **NWPU-Crowd: A Large-Scale Benchmark for Crowd Counting**. The code is developed based on [C^3 Framework](https://github.com/gjy3035/C-3-Framework). 
-
-Compared with the original C^3 Framework, 
-- the python3.x's new features are utilized;
-- the density map is generated online by a conv layer for saving io time on the disk;
-- improve the visualization in the Tensorboard.
-
-These features will be merged into C^3 Framework as soon as possible.
-
+This repo is based on [NWPU-Crowd-Sample-Code](https://github.com/gjy3035/NWPU-Crowd-Sample-Code). 
 
 # Getting Started
 
@@ -23,7 +15,7 @@ These features will be merged into C^3 Framework as soon as possible.
 - Installation
   - Clone this repo:
     ```
-    git clone https://github.com/gjy3035/NWPU-Crowd-Sample-Code.git
+    git clone https://github.com/sailyung/crowd_counting.git
     ```
   
 - Data Preparation
@@ -76,52 +68,26 @@ We only provide an example to forward the model on the test set. You may need to
 
 The overall results on val set:
 
-|   Method   |  MAE  |  MSE  |  PSNR  |  SSIM  |
-|------------|-------|-------|--------|--------|
-| MCNN [1]   | 218.53| 700.61| 28.558 |  0.875 |
-| C3F-VGG [2]| 105.79| 504.39| 29.977 |  0.918 |
-| CSRNet [3] | 104.89| 433.48| 29.901 |  0.883 |
-| CANNet [4] |  93.58| 489.90| 30.428 |  0.870 |
-| SCAR [5]   |  **81.57**| **397.92**| 30.356 |  0.920 |
-| SFCN+ [6]  |  95.46| 608.32| **30.591** | **0.952**|
+|   Method   |  O_MAE  |  O_MSE  |  O_NAE  |  Avg.MAE[S]  |  Avg.MAE[L]  | 
+|------------|-------|-------|--------|--------|--------|
+| MCNN [1]   | 232.5 | 714.6 | 1.063 | 1171.9 | 220.9 |
+| SFCN+ [2]  |  105.7| 424.1| 0.254 | 712.7 | 106.8 | 
+| LCNet | 233.097 | 802.123 | 0.848 | 1503.09 | 218.682 |
 
+O_MAE: Mean Absolute Error (MAE) on overall testing images.
+O_MSE: Mean Squared Error (MAE) on overall testing images.
+O_MAE: Normalized Absolute Error (NAE) on overall testing images.
+Avg.MAE[S]: The test set is divided into five scene levels according to the numbers of people in an image, and avg. MAE[S] represents the average MAE of the five scene levels.
+Avg.MAE[L]: The test set is divided into four luminance levels according to the luminance calculated in an image, and avg. MAE[S] represents the average MAE of the four luminance levels.
 
 About the leaderboard on the test set, please visit [Crowd benchmark](https://crowdbenchmark.com/nwpucrowd.html).  
 
 ## References
 
 1. Single-Image Crowd Counting via Multi-Column Convolutional Neural Network, CPVR, 2016.
-2. C^3 Framework: An Open-source PyTorch Code for Crowd Counting, arXiv, 2019.
-3. CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes, CVPR, 2018. 
-4. Context-Aware Crowd Counting, CVPR, 2019.
-5. SCAR: Spatial-/Channel-wise Attention Regression Networks for Crowd Counting, Neurocomputing, 2019.
-6. Learning from Synthetic Data for Crowd Counting in the Wild, CVPR, 2019.
+2. Learning from Synthetic Data for Crowd Counting in the Wild, CVPR, 2019.
 
 
 # Evaluation Scheme 
 
 The Evaluation Python Code of the ```crowdbenchmark.com``` is shown in ```./misc/evaluation_code.py```, which is similar to our validation code in ```trainer.py```. 
-
-# Citation
-If you find this project is useful for your research, please cite:
-```
-@article{gao2020nwpu,
-  title={NWPU-Crowd: A Large-Scale Benchmark for Crowd Counting},
-  author={Wang, Qi and Gao, Junyu and Lin, Wei and Li, Xuelong},
-  journal={arXiv preprint arXiv:2001.03360},
-  year={2020}
-}
-```
-
-Our code borrows a lot from the C^3 Framework, you may cite:
-```
-@article{gao2019c,
-  title={C$^3$ Framework: An Open-source PyTorch Code for Crowd Counting},
-  author={Gao, Junyu and Lin, Wei and Zhao, Bin and Wang, Dong and Gao, Chenyu and Wen, Jun},
-  journal={arXiv preprint arXiv:1907.02724},
-  year={2019}
-}
-```
-If you use crowd counting models in this repo (MCNN, C3F-VGG, CSRNet, CANNet, SCAR, and SFCN+), please cite them. 
-
-
