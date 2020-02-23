@@ -46,6 +46,8 @@ This repo is based on [NWPU-Crowd-Sample-Code](https://github.com/gjy3035/NWPU-C
   - Run ```./datasets/prepare_NWPU.m``` using [Matlab](https://www.mathworks.com/). 
   - Modify ```__C_NWPU.DATA_PATH``` in ```./datasets/setting/NWPU.py``` with the path of your processed data.
 
+the folder tree is below:
+
 
 ## Training
 
@@ -87,7 +89,6 @@ About the leaderboard on the test set, please visit [Crowd benchmark](https://cr
 1. Single-Image Crowd Counting via Multi-Column Convolutional Neural Network, CPVR, 2016.
 2. Learning from Synthetic Data for Crowd Counting in the Wild, CVPR, 2019.
 
-
 # Evaluation Scheme 
 
-The Evaluation Python Code of the ```crowdbenchmark.com``` is shown in ```./misc/evaluation_code.py```, which is similar to our validation code in ```trainer.py```. 
+The Evaluation Python Code of the ```crowdbenchmark.com``` is shown in ```./misc/evaluation_code.py```, which is similar to validation code in ```trainer.py```. 
