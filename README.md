@@ -72,7 +72,7 @@ The overall results on val set:
 |------------|-------|-------|--------|--------|--------|
 | MCNN [1]   | 232.5 | 714.6 | 1.063 | 1171.9 | 220.9 |
 | SFCN+ [2]  |  105.7| 424.1| 0.254 | 712.7 | 106.8 | 
-| LCNet | 233.097 | 802.123 | 0.848 | 1503.09 | 218.682 |
+| LCN | 233.097 | 802.123 | 0.848 | 1503.09 | 218.682 |
 
 O_MAE: Mean Absolute Error (MAE) on overall testing images.
 O_MSE: Mean Squared Error (MAE) on overall testing images.
